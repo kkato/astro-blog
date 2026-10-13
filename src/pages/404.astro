@@ -1,0 +1,15 @@
+---
+import Base from "@/layouts/Base.astro";
+import Prompt from "@/components/Prompt.astro";
+---
+
+<Base title="404">
+  <section class="block">
+    <Prompt command="cd ???" />
+    <div class="output">
+      <p class="error">bash: cd: no such file or directory</p>
+      <p><a href="/" class="more">→ cd ~</a></p>
+    </div>
+  </section>
+  <Prompt cursor />
+</Base>

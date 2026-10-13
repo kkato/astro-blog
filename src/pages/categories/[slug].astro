@@ -1,0 +1,29 @@
+---
+import Base from "@/layouts/Base.astro";
+import Prompt from "@/components/Prompt.astro";
+import PostList from "@/components/PostList.astro";
+import { getPosts } from "@/lib/posts";
+import { categories, type Category } from "@/lib/site";
+
+export function getStaticPaths() {
+  return categories.map((category) => ({ params: { slug: category.slug }, props: { category } }));
+}
+
+interface Props {
+  category: Category;
+}
+
+const { category } = Astro.props;
+const posts = (await getPosts()).filter((p) => p.data.category === category.name);
+---
+
+<Base title={category.name} description={category.description}>
+  <section class="block">
+    <Prompt command={`ls -t categories/${category.slug}/`} />
+    <div class="output">
+      <p class="comment"># {category.name} — {category.description}</p>
+      <PostList posts={posts} showCategory={false} />
+    </div>
+  </section>
+  <Prompt command="cd .." path={`~/categories/${category.slug}`} cursor />
+</Base>

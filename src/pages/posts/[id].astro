@@ -1,0 +1,81 @@
+---
+import { render } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import Prompt from "@/components/Prompt.astro";
+import { categoryOf, formatDate, getPosts, summaryOf, type Post } from "@/lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { id: post.id },
+    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+  }));
+}
+
+interface Props {
+  post: Post;
+  newer?: Post;
+  older?: Post;
+}
+
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+const category = categoryOf(post);
+const file = post.filePath?.split("/").pop() ?? `${post.id}.md`;
+---
+
+<Base title={post.data.title} description={summaryOf(post, 120)}>
+  <article>
+    <Prompt command={`cat posts/${file}`} />
+    <div class="frontmatter">
+      <span class="dim">---</span>
+      <span><span class="key">date:</span> <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time></span>
+      <span><span class="key">category:</span> <a href={`/categories/${category.slug}/`} class="cat-tag">{category.name}</a></span>
+      {post.data.draft && <span><span class="key">draft:</span> true</span>}
+      <span class="dim">---</span>
+    </div>
+    <h1 class="post-title">{post.data.title}</h1>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  <nav class="post-nav">
+    {newer ? <a href={`/posts/${newer.id}/`}><span class="dim">newer ←</span> {newer.data.title}</a> : <span />}
+    {older && <a href={`/posts/${older.id}/`} class="older">{older.data.title} <span class="dim">→ older</span></a>}
+  </nav>
+
+  <Prompt command="cd .." cursor />
+
+  <script>
+    // コードのコピーボタン
+    document.querySelectorAll<HTMLPreElement>(".prose pre.astro-code").forEach((pre) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "copy-code";
+      button.textContent = "copy";
+      button.addEventListener("click", async () => {
+        await navigator.clipboard.writeText(pre.querySelector("code")?.innerText ?? "");
+        button.textContent = "copied!";
+        setTimeout(() => (button.textContent = "copy"), 2000);
+      });
+      pre.appendChild(button);
+    });
+
+    // ```mermaid のブロックを図にする
+    const diagrams = Array.from(document.querySelectorAll(".prose pre > code.language-mermaid"), (code) => {
+      const div = document.createElement("div");
+      div.className = "mermaid";
+      div.textContent = code.textContent;
+      code.parentElement!.replaceWith(div);
+      return div;
+    });
+    if (diagrams.length > 0) {
+      import("mermaid").then(({ default: mermaid }) => {
+        const dark = document.documentElement.dataset.theme === "dark";
+        mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "default" });
+        mermaid.run({ nodes: diagrams });
+      });
+    }
+  </script>
+</Base>

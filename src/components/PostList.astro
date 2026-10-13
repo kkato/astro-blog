@@ -1,0 +1,32 @@
+---
+import { categoryOf, formatDate, type Post } from "@/lib/posts";
+
+interface Props {
+  posts: Post[];
+  showCategory?: boolean;
+}
+
+const { posts, showCategory = true } = Astro.props;
+---
+
+<ul class="ls">
+  {
+    posts.map((post) => {
+      const category = categoryOf(post);
+      return (
+        <li>
+          <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+          {showCategory && (
+            <a href={`/categories/${category.slug}/`} class="cat-tag">
+              {category.short}
+            </a>
+          )}
+          <a href={`/posts/${post.id}/`} class="ls-title">
+            {post.data.title}
+          </a>
+          {post.data.draft && <span class="draft">draft</span>}
+        </li>
+      );
+    })
+  }
+</ul>

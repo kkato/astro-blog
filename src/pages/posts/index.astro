@@ -1,0 +1,31 @@
+---
+import Base from "@/layouts/Base.astro";
+import Prompt from "@/components/Prompt.astro";
+import PostList from "@/components/PostList.astro";
+import { formatDate, getPosts, type Post } from "@/lib/posts";
+
+const posts = await getPosts();
+const byYear = new Map<string, Post[]>();
+for (const post of posts) {
+  const year = formatDate(post.data.date).slice(0, 4);
+  byYear.set(year, [...(byYear.get(year) ?? []), post]);
+}
+---
+
+<Base title="posts">
+  <section class="block">
+    <Prompt command="ls -lt posts/" />
+    <div class="output">
+      <p class="dim">total {posts.length}</p>
+      {
+        [...byYear].map(([year, yearPosts]) => (
+          <>
+            <p class="comment"># {year}</p>
+            <PostList posts={yearPosts} />
+          </>
+        ))
+      }
+    </div>
+  </section>
+  <Prompt cursor />
+</Base>

@@ -1,0 +1,47 @@
+---
+import Base from "@/layouts/Base.astro";
+import Prompt from "@/components/Prompt.astro";
+import { formatDate, getPosts } from "@/lib/posts";
+import { categories } from "@/lib/site";
+
+const posts = await getPosts();
+const tree = categories.map((category) => ({
+  category,
+  posts: posts.filter((p) => p.data.category === category.name),
+}));
+---
+
+<Base title="categories">
+  <section class="block">
+    <Prompt command="tree categories/" />
+    <div class="output tree">
+      <p>categories/</p>
+      {
+        tree.map(({ category, posts: categoryPosts }, i) => {
+          const lastDir = i === tree.length - 1;
+          return (
+            <>
+              <p>
+                <span class="dim">{lastDir ? "└── " : "├── "}</span>
+                <a href={`/categories/${category.slug}/`} class="dir">{category.slug}/</a>
+                <span class="comment"> # {category.description}</span>
+              </p>
+              {categoryPosts.map((post, j) => (
+                <p>
+                  <span class="dim">
+                    {lastDir ? "    " : "│   "}
+                    {j === categoryPosts.length - 1 ? "└── " : "├── "}
+                  </span>
+                  <a href={`/posts/${post.id}/`}>{post.data.title}</a>
+                  <span class="dim"> {formatDate(post.data.date)}</span>
+                </p>
+              ))}
+            </>
+          );
+        })
+      }
+      <p class="dim tree-summary">{categories.length} directories, {posts.length} files</p>
+    </div>
+  </section>
+  <Prompt cursor />
+</Base>

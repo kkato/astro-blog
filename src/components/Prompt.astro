@@ -1,0 +1,18 @@
+---
+import { site } from "@/lib/site";
+
+interface Props {
+  command?: string;
+  path?: string;
+  cursor?: boolean;
+}
+
+const { command, path = "~", cursor = false } = Astro.props;
+---
+
+<p class="prompt">
+  <span class="prompt-user">{site.prompt}</span><span class="prompt-sep">:</span><span class="prompt-path">{path}</span><span class="prompt-sep">$</span>
+  {command && <span class="prompt-command">{command}</span>}
+  <slot />
+  {cursor && <span class="cursor" aria-hidden="true" />}
+</p>

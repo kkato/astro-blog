@@ -1,0 +1,21 @@
+---
+import Base from "@/layouts/Base.astro";
+import Prompt from "@/components/Prompt.astro";
+import SocialLinks from "@/components/SocialLinks.astro";
+import { Content } from "@/content/about.md";
+---
+
+<Base title="about">
+  <section class="block">
+    <Prompt command="cat about.md" />
+    <div class="output">
+      <h1 class="post-title">Ken Kato</h1>
+      <div class="prose"><Content /></div>
+    </div>
+  </section>
+  <section class="block">
+    <Prompt command="ls ~/.links" />
+    <div class="output"><SocialLinks /></div>
+  </section>
+  <Prompt cursor />
+</Base>

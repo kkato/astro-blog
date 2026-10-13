@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# kkato.dev
 
-## Getting Started
+Astro で静的サイトとして書き出し、GitHub Pages で配る技術ブログ。main に push すると `.github/workflows/deploy.yml` が `dist/` を公開する。
 
-First, run the development server:
+## 記事を書く
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+`src/content/posts/<slug>.md`（または `.mdx`）を作る。URL は `/posts/<slug>/` になる。
+
+```markdown
+---
+title: "記事タイトル"
+date: 2026-10-13T12:00:00+09:00
+category: "Kubernetes"   # src/lib/site.ts の categories のどれか
+tags: ["kubernetes"]     # 検索にだけ使う
+draft: false             # true にすると本番では出ない (npm run dev では見える)
+---
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 画像は `public/images/<slug>/` に置いて `![](/images/<slug>/xxx.png)` で参照する
+- ` ```mermaid ` のコードブロックは図として描画される
+- `.mdx` では `import` したコンポーネントや JSX を本文に書ける
+- About ページは `src/content/about.md`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 動かす
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```sh
+npm run dev       # http://localhost:4321
+npm run build     # 型チェックして dist/ に書き出す
+npm run preview   # 書き出した結果を確認する
+```

@@ -1,0 +1,48 @@
+---
+import Base from "@/layouts/Base.astro";
+import Prompt from "@/components/Prompt.astro";
+import PostList from "@/components/PostList.astro";
+import SocialLinks from "@/components/SocialLinks.astro";
+import { getPosts } from "@/lib/posts";
+import { categories, site } from "@/lib/site";
+
+const LATEST_COUNT = 10;
+const posts = await getPosts();
+---
+
+<Base>
+  <section class="block">
+    <Prompt command="whoami" />
+    <div class="output">
+      <h1 class="hero">{site.author}</h1>
+      <p>SRE / インフラエンジニア。Kubernetes やデータベースまわりで学んだことを書いています。</p>
+      <SocialLinks />
+    </div>
+  </section>
+
+  <section class="block">
+    <Prompt command={`ls -t posts/ | head -${LATEST_COUNT}`} />
+    <div class="output">
+      <PostList posts={posts.slice(0, LATEST_COUNT)} />
+      <a href="/posts/" class="more">→ 全 {posts.length} 件を見る</a>
+    </div>
+  </section>
+
+  <section class="block">
+    <Prompt command="ls categories/" />
+    <div class="output">
+      <ul class="dir-list">
+        {
+          categories.map((category) => (
+            <li>
+              <a href={`/categories/${category.slug}/`}>{category.slug}/</a>
+              <span class="dim">{posts.filter((p) => p.data.category === category.name).length}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Prompt cursor />
+</Base>
