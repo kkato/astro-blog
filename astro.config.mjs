@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
+import ghostty from "./src/lib/ghostty-theme.mjs";
 
 export default defineConfig({
   site: "https://kkato.dev",
@@ -11,8 +12,8 @@ export default defineConfig({
     // mermaid は色付けせず、ブラウザ側で図に変換する
     syntaxHighlight: { type: "shiki", excludeLangs: ["mermaid", "math"] },
     shikiConfig: {
-      themes: { light: "github-light", dark: "github-dark" },
-      defaultColor: false,
+      // ライト / ダークどちらでもコードブロックは Ghostty の画面と同じ配色にする
+      theme: ghostty,
     },
   },
 });

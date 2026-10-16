@@ -1,38 +1,50 @@
-/* 色は GNOME Terminal (Ubuntu) 標準の Tango パレットに合わせている */
+/* 色は Ghostty 標準の配色（背景 #282c34 + Tomorrow Night のパレット）に合わせている。
+   Ghostty にライト版は無いので、ライトは同じ色相を白背景で読める濃さにしたもの */
 :root {
   --mono: "JetBrains Mono Variable", ui-monospace, "Hiragino Sans", "Noto Sans JP", monospace;
-  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
-  --width: 820px;
+  /* 本文の書体・文字サイズ・行間・幅は note の記事ページに合わせている */
+  --sans: "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Arial, "Noto Sans JP", Meiryo, sans-serif;
+  --width: 680px;
 
   --bg: #ffffff;
-  --bg-soft: #f3f3f1;
-  --fg: #2e3436;
-  --dim: #888a85;
-  --line: #e2e2de;
-  --user: #4e9a06;
-  --path: #3465a4;
-  --accent: #4e9a06;
-  --mark: rgb(196 160 0 / 0.3);
-  --error: #cc0000;
+  --bg-soft: #f2f2f2;
+  --fg: #1d1f21;
+  --dim: #666666;
+  --line: #e4e4e4;
+  --user: #4a6d8f;
+  --path: #4a6d8f;
+  --accent: #4a6d8f;
+  --code: #3e8a8f;
+  --mark: rgb(240 198 116 / 0.45);
+  --error: #c82829;
+  --tag: #666666;
+  --warn: #af8700;
 
-  --tag: #c4a000;
+  /* コードブロックはどちらのテーマでも Ghostty の黒 */
+  --code-bg: #1d1f21;
+  --code-fg: #eaeaea;
+  --code-dim: #969896;
+  --code-line: #1d1f21;
 
   color-scheme: light;
 }
 
 :root[data-theme="dark"] {
-  --bg: #171421;
-  --bg-soft: #221e2e;
-  --fg: #d3d7cf;
-  --dim: #888a85;
-  --line: #2e2a3a;
-  --user: #8ae234;
-  --path: #729fcf;
-  --accent: #8ae234;
-  --mark: rgb(252 233 79 / 0.3);
-  --error: #ef2929;
+  --bg: #282c34;
+  --bg-soft: #2f343e;
+  --fg: #eaeaea;
+  --dim: #969896;
+  --line: #3a3f4b;
+  --user: #81a2be;
+  --path: #81a2be;
+  --accent: #81a2be;
+  --code: #8abeb7;
+  --mark: rgb(240 198 116 / 0.3);
+  --error: #cc6666;
+  --tag: #969896;
+  --warn: #f0c674;
 
-  --tag: #fce94f;
+  --code-line: #3a3f4b;
 
   color-scheme: dark;
 }
@@ -52,9 +64,12 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--mono);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.75;
   overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -104,7 +119,7 @@ main.container {
   justify-content: space-between;
   align-items: center;
   gap: 4px 24px;
-  padding: 12px max(24px, calc((100% - var(--width)) / 2));
+  padding: 12px max(24px, calc((100% - 820px) / 2));
   background: color-mix(in srgb, var(--bg) 88%, transparent);
   backdrop-filter: blur(8px);
   border-bottom: 1px dashed var(--line);
@@ -172,6 +187,11 @@ main.container {
     opacity: 0;
   }
 }
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+}
 .block {
   margin-bottom: 36px;
 }
@@ -213,7 +233,7 @@ main.container {
   padding: 2px 10px;
   border: 1px solid var(--line);
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 14px;
 }
 .socials a:hover {
   border-color: var(--accent);
@@ -230,7 +250,7 @@ main.container {
 }
 .ls time {
   color: var(--dim);
-  font-size: 13px;
+  font-size: 14px;
 }
 .ls-title {
   font-family: var(--sans);
@@ -244,20 +264,24 @@ main.container {
 }
 .cat-tag {
   color: var(--tag);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
+}
+.cat-tag:hover {
+  color: var(--accent);
 }
 .cat-tag::before {
   content: "[";
-  color: var(--dim);
+  opacity: 0.5;
 }
 .cat-tag::after {
   content: "]";
-  color: var(--dim);
+  opacity: 0.5;
 }
 .draft {
-  font-size: 12px;
-  color: var(--error);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--warn);
 }
 .dir-list {
   display: flex;
@@ -297,7 +321,7 @@ main.container {
 }
 .grep-results li {
   padding: 10px 0;
-  border-bottom: 1px dashed var(--line);
+  border-bottom: 1px solid var(--line);
 }
 .grep-file {
   color: var(--path);
@@ -311,7 +335,7 @@ main.container {
 }
 .grep-snippet {
   font-family: var(--sans);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--dim);
 }
 mark {
@@ -325,17 +349,18 @@ mark {
   display: flex;
   flex-direction: column;
   margin: 12px 0 4px;
-  font-size: 13px;
+  font-size: 14px;
 }
 .frontmatter .key {
   color: var(--path);
 }
 .post-title {
-  margin: 8px 0 32px;
-  font-size: 30px;
-  line-height: 1.4;
-  font-weight: 800;
-  font-family: var(--mono);
+  margin: 8px 0 48px;
+  font-size: 32px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-family: var(--sans);
 }
 .post-nav {
   display: flex;
@@ -343,8 +368,8 @@ mark {
   gap: 16px;
   margin: 48px 0 24px;
   padding-top: 16px;
-  border-top: 1px dashed var(--line);
-  font-size: 13px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
 }
 .post-nav .older {
   text-align: right;
@@ -352,33 +377,50 @@ mark {
 
 .prose {
   font-family: var(--sans);
-  font-size: 16.5px;
-  line-height: 1.9;
+  font-size: 18px;
+  line-height: 2;
 }
 .prose > * + * {
-  margin-top: 1.2em;
+  margin-top: 2em;
+}
+.prose strong {
+  font-weight: 700;
 }
 .prose h1,
 .prose h2,
 .prose h3,
 .prose h4 {
-  margin-top: 2.2em;
-  font-family: var(--mono);
-  line-height: 1.4;
+  margin-top: 54px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
   scroll-margin-top: 80px;
 }
-.prose h1 { font-size: 24px; }
-.prose h2 { font-size: 21px; }
-.prose h3 { font-size: 18px; }
-.prose h4 { font-size: 16px; }
-.prose h1::before { content: "# "; color: var(--accent); }
-.prose h2::before { content: "## "; color: var(--accent); }
-.prose h3::before { content: "### "; color: var(--accent); }
-.prose h4::before { content: "#### "; color: var(--accent); }
+.prose :is(h1, h2, h3, h4) + * {
+  margin-top: 18px;
+}
+.prose :is(h1, h2, h3, h4)::before {
+  font-family: var(--mono);
+  letter-spacing: 0;
+}
+.prose h1 { font-size: 28px; }
+.prose h2 { font-size: 24px; }
+.prose h3 { font-size: 20px; }
+.prose h4 { font-size: 18px; }
+.prose h1::before { content: "# "; color: var(--accent); opacity: 0.6; }
+.prose h2::before { content: "## "; color: var(--accent); opacity: 0.6; }
+.prose h3::before { content: "### "; color: var(--accent); opacity: 0.6; }
+.prose h4::before { content: "#### "; color: var(--accent); opacity: 0.6; }
 .prose a {
-  color: var(--accent);
+  color: var(--path);
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--path) 35%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.15s;
+}
+.prose a:hover {
+  color: var(--path);
+  text-decoration-color: currentColor;
 }
 .prose ul,
 .prose ol {
@@ -407,74 +449,75 @@ mark {
   margin-top: 0.3em;
 }
 .prose blockquote {
-  padding: 2px 16px;
-  border-left: 3px solid var(--accent);
+  padding: 24px 32px;
+  border-radius: 6px;
+  background: var(--bg-soft);
   color: var(--dim);
 }
 .prose img {
   max-width: 100%;
   height: auto;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 6px;
 }
 .prose hr {
   border: none;
-  border-top: 1px dashed var(--line);
+  border-top: 1px solid var(--line);
 }
 .prose table {
   display: block;
   overflow-x: auto;
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.7;
 }
 .prose th,
 .prose td {
-  padding: 6px 12px;
-  border: 1px solid var(--line);
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
 }
 .prose th {
-  background: var(--bg-soft);
+  border-bottom-width: 2px;
   font-family: var(--mono);
+  font-size: 14px;
+  color: var(--dim);
 }
 .prose :not(pre) > code {
-  padding: 1px 5px;
-  border-radius: 3px;
+  padding: 2px 6px;
+  border-radius: 4px;
   background: var(--bg-soft);
-  color: var(--path);
+  color: var(--code);
+  letter-spacing: 0;
   font-family: var(--mono);
   font-size: 0.86em;
 }
 .prose pre {
   position: relative;
   overflow-x: auto;
-  padding: 14px 16px;
-  background: var(--bg-soft) !important;
-  border: 1px solid var(--line);
-  border-radius: 4px;
+  padding: 16px 20px;
+  background: var(--code-bg) !important;
+  color: var(--code-fg);
+  border: 1px solid var(--code-line);
+  border-radius: 8px;
   font-family: var(--mono);
-  font-size: 13.5px;
-  line-height: 1.65;
-}
-.astro-code,
-.astro-code span {
-  color: var(--shiki-light);
-}
-:root[data-theme="dark"] .astro-code,
-:root[data-theme="dark"] .astro-code span {
-  color: var(--shiki-dark);
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0;
 }
 .copy-code {
   position: absolute;
   top: 6px;
   right: 6px;
   padding: 0 8px;
-  font-size: 12px;
-  color: var(--dim);
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: var(--bg);
+  font-size: 13px;
+  color: var(--code-dim);
+  border: 1px solid #3a3f4b;
+  border-radius: 4px;
+  background: var(--code-bg);
   cursor: pointer;
   opacity: 0;
+  transition: opacity 0.15s;
 }
 .prose pre:hover .copy-code {
   opacity: 1;
@@ -484,7 +527,7 @@ mark {
   justify-content: center;
   padding: 16px;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 /* ---------- footer ---------- */
@@ -494,14 +537,14 @@ mark {
   gap: 4px 20px;
   padding-top: 16px;
   padding-bottom: 32px;
-  border-top: 1px dashed var(--line);
-  font-size: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
   color: var(--dim);
 }
 
 @media (max-width: 640px) {
   body {
-    font-size: 14px;
+    font-size: 15px;
   }
   .container {
     padding: 0 16px;
@@ -523,6 +566,6 @@ mark {
     grid-column: 1 / -1;
   }
   .prose {
-    font-size: 15.5px;
+    font-size: 16px;
   }
 }

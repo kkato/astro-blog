@@ -4,7 +4,7 @@ import Prompt from "@/components/Prompt.astro";
 import PostList from "@/components/PostList.astro";
 import SocialLinks from "@/components/SocialLinks.astro";
 import { getPosts } from "@/lib/posts";
-import { categories, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 const LATEST_COUNT = 10;
 const posts = await getPosts();
@@ -25,22 +25,6 @@ const posts = await getPosts();
     <div class="output">
       <PostList posts={posts.slice(0, LATEST_COUNT)} />
       <a href="/posts/" class="more">→ 全 {posts.length} 件を見る</a>
-    </div>
-  </section>
-
-  <section class="block">
-    <Prompt command="ls categories/" />
-    <div class="output">
-      <ul class="dir-list">
-        {
-          categories.map((category) => (
-            <li>
-              <a href={`/categories/${category.slug}/`}>{category.slug}/</a>
-              <span class="dim">{posts.filter((p) => p.data.category === category.name).length}</span>
-            </li>
-          ))
-        }
-      </ul>
     </div>
   </section>
 

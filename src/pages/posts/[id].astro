@@ -45,7 +45,6 @@ const file = post.filePath?.split("/").pop() ?? `${post.id}.md`;
     {older && <a href={`/posts/${older.id}/`} class="older">{older.data.title} <span class="dim">→ older</span></a>}
   </nav>
 
-  <Prompt command="cd .." cursor />
 
   <script>
     // コードのコピーボタン

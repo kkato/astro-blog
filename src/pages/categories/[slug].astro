@@ -21,9 +21,7 @@ const posts = (await getPosts()).filter((p) => p.data.category === category.name
   <section class="block">
     <Prompt command={`ls -t categories/${category.slug}/`} />
     <div class="output">
-      <p class="comment"># {category.name} — {category.description}</p>
       <PostList posts={posts} showCategory={false} />
     </div>
   </section>
-  <Prompt command="cd .." path={`~/categories/${category.slug}`} cursor />
 </Base>

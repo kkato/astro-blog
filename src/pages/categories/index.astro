@@ -24,7 +24,6 @@ const tree = categories.map((category) => ({
               <p>
                 <span class="dim">{lastDir ? "└── " : "├── "}</span>
                 <a href={`/categories/${category.slug}/`} class="dir">{category.slug}/</a>
-                <span class="comment"> # {category.description}</span>
               </p>
               {categoryPosts.map((post, j) => (
                 <p>
@@ -43,5 +42,4 @@ const tree = categories.map((category) => ({
       <p class="dim tree-summary">{categories.length} directories, {posts.length} files</p>
     </div>
   </section>
-  <Prompt cursor />
 </Base>
