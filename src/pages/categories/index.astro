@@ -1,7 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import Prompt from "@/components/Prompt.astro";
-import { formatDate, getPosts } from "@/lib/posts";
+import { getPosts } from "@/lib/posts";
 import { categories } from "@/lib/site";
 
 const posts = await getPosts();
@@ -32,7 +32,6 @@ const tree = categories.map((category) => ({
                     {j === categoryPosts.length - 1 ? "└── " : "├── "}
                   </span>
                   <a href={`/posts/${post.id}/`}>{post.data.title}</a>
-                  <span class="dim"> {formatDate(post.data.date)}</span>
                 </p>
               ))}
             </>
