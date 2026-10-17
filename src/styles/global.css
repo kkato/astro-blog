@@ -430,7 +430,7 @@ mark {
   list-style: none;
 }
 .prose ul > li::before {
-  content: "-";
+  content: "•";
   position: absolute;
   margin-left: -1.2em;
   color: var(--accent);
