@@ -12,13 +12,14 @@ export const socials = [
   { name: "mastodon", label: "Mastodon", url: "https://social.kkato.app/@kkato" },
 ] as const;
 
-// 記事の front matter の category はここに並べた name のどれかにする
+// 記事の front matter の category はここに並べた slug のどれかにする
 export const categories = [
-  { slug: "kubernetes", short: "k8s", name: "Kubernetes", description: "おうちクラスタの構築・運用、周辺ツール" },
-  { slug: "database", short: "db", name: "Database", description: "PostgreSQL やストレージエンジンの仕組み" },
-  { slug: "linux", short: "linux", name: "Linux", description: "OS まわりの設定やセットアップ" },
-  { slug: "devtools", short: "dev", name: "DevTools", description: "開発を楽にするツールや Tips" },
-  { slug: "career", short: "life", name: "Career", description: "転職や大学院など" },
+  { slug: "kubernetes", description: "おうちクラスタの構築・運用、周辺ツール" },
+  { slug: "database", description: "インデックスやストレージエンジンの仕組み" },
+  { slug: "postgresql", description: "PostgreSQL のビルドや中身" },
+  { slug: "linux", description: "OS まわりの設定やセットアップ" },
+  { slug: "devtools", description: "開発を楽にするツールや Tips" },
+  { slug: "career", description: "転職や大学院など" },
 ] as const;
 
 export type Category = (typeof categories)[number];

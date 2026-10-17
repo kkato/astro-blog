@@ -1,7 +1,7 @@
 ---
 title: "ジョージア工科大学 OMSCSを振り返って"
 date: 2023-04-10T18:05:06+09:00
-category: "Career"
+category: "career"
 draft: false
 tags: ["idea"]
 ---

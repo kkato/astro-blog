@@ -1,7 +1,7 @@
 ---
 title: "ジョージア工科大学 OMSCSへの出願方法"
 date: 2023-03-21T18:04:49+09:00
-category: "Career"
+category: "career"
 draft: false
 tags: ["idea"]
 ---

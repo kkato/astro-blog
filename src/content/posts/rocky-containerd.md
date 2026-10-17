@@ -1,7 +1,7 @@
 ---
 title: "Rocky Linuxにcontainerdをインストールする方法"
 date: 2024-06-30T16:46:03+09:00
-category: "Linux"
+category: "linux"
 draft: false
 tags: ["docker"]
 ---

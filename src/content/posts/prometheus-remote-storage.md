@@ -1,7 +1,7 @@
 ---
 title: "Prometheusリモートストレージの比較"
 date: 2026-03-14T12:00:00+09:00
-category: "Kubernetes"
+category: "kubernetes"
 draft: false
 tags: ["kubernetes", "prometheus"]
 ---

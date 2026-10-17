@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL Operatorの比較"
 date: 2026-02-20T15:00:00+09:00
-category: "Kubernetes"
+category: "kubernetes"
 draft: false
 tags: ["kubernetes", "postgresql"]
 ---

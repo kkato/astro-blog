@@ -30,7 +30,7 @@ const file = post.filePath?.split("/").pop() ?? `${post.id}.md`;
     <div class="frontmatter">
       <span class="dim">---</span>
       <span><span class="key">date:</span> <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time></span>
-      <span><span class="key">category:</span> <a href={`/categories/${category.slug}/`} class="cat-tag">{category.name}</a></span>
+      <span><span class="key">category:</span> <a href={`/categories/${category.slug}/`} class="cat-tag">{category.slug}</a></span>
       {post.data.draft && <span><span class="key">draft:</span> true</span>}
       <span class="dim">---</span>
     </div>

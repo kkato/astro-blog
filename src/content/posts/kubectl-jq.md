@@ -1,7 +1,7 @@
 ---
 title: "kubectlとjqコマンドの便利な組み合わせ"
 date: 2025-08-10T19:52:30+09:00
-category: "Kubernetes"
+category: "kubernetes"
 draft: false
 tags: ["kubernetes", "command"]
 ---

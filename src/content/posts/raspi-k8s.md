@@ -1,7 +1,7 @@
 ---
 title: "Raspberry Pi上にk8sクラスタを構築する"
 date: 2023-04-23T16:13:42+09:00
-category: "Kubernetes"
+category: "kubernetes"
 draft: false
 tags: ["kubernetes"]
 ---

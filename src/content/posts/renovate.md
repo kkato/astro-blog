@@ -1,7 +1,7 @@
 ---
 title: "Renovateの導入方法"
 date: 2025-05-06T15:27:19+09:00
-category: "DevTools"
+category: "devtools"
 draft: false
 ---
 

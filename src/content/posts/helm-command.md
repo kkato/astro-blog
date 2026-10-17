@@ -1,7 +1,7 @@
 ---
 title: "Helmコマンド まとめ"
 date: 2025-12-27T09:37:48+09:00
-category: "Kubernetes"
+category: "kubernetes"
 draft: false
 tags: ["kubernetes", "helm"]
 ---

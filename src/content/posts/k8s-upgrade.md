@@ -1,7 +1,7 @@
 ---
 title: "Kubernetesをv1.30からv1.31にアップグレードした"
 date: 2026-01-24T20:11:09+09:00
-category: "Kubernetes"
+category: "kubernetes"
 draft: false
 tags: ["kubernetes"]
 ---
