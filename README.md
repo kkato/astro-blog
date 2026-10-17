@@ -1,6 +1,6 @@
 # kkato.dev
 
-Astro で静的サイトとして書き出し、GitHub Pages で配る技術ブログ。main に push すると `.github/workflows/deploy.yml` が `dist/` を公開する。
+個人の技術ブログサイトです。Astro で静的サイトを生成し、GitHub Pages でホスティングしています。
 
 ## 記事を書く
 
