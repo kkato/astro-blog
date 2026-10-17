@@ -267,6 +267,10 @@ main.container {
   font-size: 13px;
   font-weight: 600;
 }
+/* 一番長い kubernetes に合わせて幅を固定し、タイトルの開始位置をそろえる */
+.ls .cat-tag {
+  min-width: 12ch;
+}
 .cat-tag:hover {
   color: var(--accent);
 }
