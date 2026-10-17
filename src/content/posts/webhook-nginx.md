@@ -1,7 +1,7 @@
 ---
 title: "Alertmanagerのwebhookを試してみる"
 date: 2023-08-13T13:11:42+09:00
-category: "Kubernetes"
+category: "kubernetes"
 draft: false
 tags: ["kubernetes"]
 ---

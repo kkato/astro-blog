@@ -1,7 +1,7 @@
 ---
 title: "Argo CDをインストールしてみた"
 date: 2026-02-20T11:00:00+09:00
-category: "Kubernetes"
+category: "kubernetes"
 draft: false
 tags: ["kubernetes", "argocd", "helm"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "ウォンテッドリーに入社しました"
 date: 2024-02-06T14:31:31+09:00
-category: "Career"
+category: "career"
 draft: false
 tags: ["idea"]
 ---

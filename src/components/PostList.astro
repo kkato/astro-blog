@@ -18,7 +18,7 @@ const { posts, showCategory = true } = Astro.props;
           <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
           {showCategory && (
             <a href={`/categories/${category.slug}/`} class="cat-tag">
-              {category.short}
+              {category.slug}
             </a>
           )}
           <a href={`/posts/${post.id}/`} class="ls-title">

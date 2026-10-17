@@ -1,7 +1,7 @@
 ---
 title: "KubernetesのCronJobが失敗したときにアラートをあげる"
 date: 2023-08-08T19:48:39+09:00
-category: "Kubernetes"
+category: "kubernetes"
 draft: false
 tags: ["kubernetes"]
 ---

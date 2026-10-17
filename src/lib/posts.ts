@@ -9,7 +9,7 @@ export async function getPosts(): Promise<Post[]> {
 }
 
 export function categoryOf(post: Post): Category {
-  return categories.find((c) => c.name === post.data.category)!;
+  return categories.find((c) => c.slug === post.data.category)!;
 }
 
 const dateFormatter = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo" });

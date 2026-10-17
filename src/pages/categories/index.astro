@@ -7,7 +7,7 @@ import { categories } from "@/lib/site";
 const posts = await getPosts();
 const tree = categories.map((category) => ({
   category,
-  posts: posts.filter((p) => p.data.category === category.name),
+  posts: posts.filter((p) => p.data.category === category.slug),
 }));
 ---
 

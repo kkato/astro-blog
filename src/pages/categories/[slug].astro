@@ -14,10 +14,10 @@ interface Props {
 }
 
 const { category } = Astro.props;
-const posts = (await getPosts()).filter((p) => p.data.category === category.name);
+const posts = (await getPosts()).filter((p) => p.data.category === category.slug);
 ---
 
-<Base title={category.name} description={category.description}>
+<Base title={category.slug} description={category.description}>
   <section class="block">
     <Prompt command={`ls -t categories/${category.slug}/`} />
     <div class="output">

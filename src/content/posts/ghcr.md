@@ -1,7 +1,7 @@
 ---
 title: "GitHub Container Registry (ghcr.io) の使い方"
 date: 2026-02-28T12:00:00+09:00
-category: "DevTools"
+category: "devtools"
 draft: false
 tags: ["docker", "github", "github-actions", "container"]
 ---

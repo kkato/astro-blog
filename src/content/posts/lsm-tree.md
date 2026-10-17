@@ -1,7 +1,7 @@
 ---
 title: "LSM-tree を理解する"
 date: 2026-05-04T21:13:27+09:00
-category: "Database"
+category: "database"
 draft: false
 tags: ["database"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL16をソースコードからビルドしてみる"
 date: 2024-09-18T14:47:07+09:00
-category: "Database"
+category: "postgresql"
 draft: false
 tags: ["postgresql"]
 ---

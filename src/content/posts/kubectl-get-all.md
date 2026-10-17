@@ -1,7 +1,7 @@
 ---
 title: "kubectlで全てのリソースをgetする方法"
 date: 2025-08-11T13:02:00+09:00
-category: "Kubernetes"
+category: "kubernetes"
 draft: false
 tags: ["kubernetes", "command"]
 ---

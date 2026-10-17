@@ -1,7 +1,7 @@
 ---
 title: "Linuxで公開鍵認証をする"
 date: 2023-07-12T21:23:52+09:00
-category: "Linux"
+category: "linux"
 draft: false
 tags: ["linux"]
 ---
