@@ -34,7 +34,6 @@ const current = Astro.url.pathname;
         document.documentElement.dataset.theme = theme;
       })();
     </script>
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-X8460KTHFP"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -42,6 +41,13 @@ const current = Astro.url.pathname;
       }
       gtag("js", new Date());
       gtag("config", "G-X8460KTHFP");
+      // 本文の表示を待たせないよう、gtag.js はページの読み込みが終わってから取りに行く
+      addEventListener("load", () => {
+        const s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-X8460KTHFP";
+        document.head.append(s);
+      });
     </script>
   </head>
   <body>
