@@ -34,6 +34,15 @@ const current = Astro.url.pathname;
         document.documentElement.dataset.theme = theme;
       })();
     </script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-X8460KTHFP"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-X8460KTHFP");
+    </script>
   </head>
   <body>
     <header class="topbar">
