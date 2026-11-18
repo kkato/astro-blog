@@ -2,7 +2,7 @@
 title: "B-tree / B+tree インデックスを理解する"
 date: 2026-05-03T17:39:53+09:00
 category: "database"
-draft: false
+draft: true
 tags: ["database"]
 ---
 
