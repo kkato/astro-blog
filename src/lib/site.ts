@@ -10,6 +10,7 @@ export const socials = [
   { name: "linkedin", label: "LinkedIn", url: "https://www.linkedin.com/in/ken-kato/" },
   { name: "x", label: "X", url: "https://twitter.com/kkato25" },
   { name: "mastodon", label: "Mastodon", url: "https://social.kkato.app/@kkato" },
+  { name: "wantedly", label: "Wantedly", url: "https://www.wantedly.com/id/kkato3" },
 ] as const;
 
 // 記事の front matter の category はここに並べた slug のどれかにする
